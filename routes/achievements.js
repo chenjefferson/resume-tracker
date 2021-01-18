@@ -65,11 +65,41 @@ router.post(
 
 /*
  * @route      PUT /api/accomplishments/:id
- * @desc       Update a contact
+ * @desc       Update an achievement
  * @access     Private
  */
-router.put('/:id', (req, res) => {
-  res.send('Put accomplishment registered by resume-tracker server.');
+router.put('/:id', auth, async (req, res) => {
+  const { title, summary, actions, type } = req.body;
+
+  // build
+  const achievementFields = {};
+  if (title) achievementFields.title = title;
+  if (summary) achievementFields.summary = summary;
+  if (actions) achievementFields.actions = actions;
+  if (type) achievementFields.type = type;
+
+  try {
+    let achievement = await Achievement.findById(req.params.id);
+
+    if (!achievement)
+      return res.status(404).json({ msg: 'Achievement not found' });
+
+    // make sure user owns achievement
+    if (achievement.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'Not authorized' });
+    }
+
+    achievement = await Achievement.findByIdAndUpdate(
+      req.params.id,
+      { $set: achievementFields },
+      { new: true }
+    );
+
+    res.json(achievement);
+  } catch (e) {
+    console.error(e.message);
+    return res.status(500).json({ msg: 'Server Error' });
+  }
 });
 
 /*
@@ -77,8 +107,27 @@ router.put('/:id', (req, res) => {
  * @desc       Delete an accomplishment
  * @access     Private
  */
-router.delete('/:id', (req, res) => {
-  res.send('Delete accomplishment registered by resume-tracker server.');
+router.delete('/:id', auth, async (req, res) => {
+  try {
+    let achievement = await Achievement.findById(req.params.id);
+
+    if (!achievement)
+      return res.status(404).json({ msg: 'Achievement not found' });
+
+    // make sure user owns achievement
+    if (achievement.user.toString() !== req.user.id) {
+      return res.status(401).json({ msg: 'Not authorized' });
+    }
+
+    achievement = await Achievement.findByIdAndRemove(req.params.id, {
+      useFindAndModify: false,
+    });
+
+    res.json(achievement);
+  } catch (e) {
+    console.error(e.message);
+    return res.status(500).json({ msg: 'Server Error' });
+  }
 });
 
 module.exports = router;
