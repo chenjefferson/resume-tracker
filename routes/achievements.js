@@ -1,13 +1,26 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
+const { check, validationResult } = require('express-validator');
+
+const User = require('../models/User');
+const Achievement = require('../models/Achievement');
 
 /*
- * @route      GET /api/accomplishments
- * @desc       Get user accomplishments
+ * @route      GET /api/achievements
+ * @desc       Get user achievements
  * @access     Private
  */
-router.get('/', (req, res) => {
-  res.send('Read user accomplishments registered by resume-tracker server.');
+router.get('/', auth, async (req, res) => {
+  try {
+    const achievements = await Achievement.find({ user: req.user.id }).sort({
+      date: -1,
+    });
+    res.json(achievements);
+  } catch (e) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
 });
 
 /*
