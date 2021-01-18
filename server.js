@@ -1,11 +1,15 @@
 const express = require('express');
 const connectDB = require('./config/db');
 
-connectDB();
+const PORT = process.env.PORT || 5000;
 
 const app = express();
 
-const PORT = process.env.PORT || 5000;
+connectDB();
+
+/* middleware */
+// body parser
+app.use(express.json({ extended: false }));
 
 app.get('/', (req, res) =>
   res.json({ msg: 'GET registered on resume-tracker API' })
