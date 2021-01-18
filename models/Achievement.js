@@ -9,11 +9,9 @@ const AchievementSchema = mongoose.Schema({
   title: {
     type: String,
     requried: true,
-    default: 'Title',
   },
   summary: {
     type: String,
-    default: 'Summary',
   },
   actions: [
     {
@@ -22,6 +20,7 @@ const AchievementSchema = mongoose.Schema({
   ],
   type: {
     type: String,
+    required: true,
     default: 'Project',
   },
   begin: {

@@ -24,13 +24,44 @@ router.get('/', auth, async (req, res) => {
 });
 
 /*
- * @route      POST /api/accomplishments
- * @desc       Add a new accomlishment
+ * @route      POST /api/achievements
+ * @desc       Add a new achievement
  * @access     Private
  */
-router.post('/', (req, res) => {
-  res.send('Add new accomplishment registered by resume-tracker server.');
-});
+router.post(
+  '/',
+  [
+    auth,
+    [
+      check('title', 'Achievement title is requried').not().isEmpty(),
+      check('type', 'Achievement type is required').not().isEmpty(),
+    ],
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(400).json({ errors: errors.array() });
+    }
+
+    const { title, summary, actions, type } = req.body;
+
+    try {
+      const newAchievement = new Achievement({
+        title,
+        summary,
+        actions,
+        type,
+        user: req.user.id,
+      });
+
+      const contact = await newAchievement.save();
+      res.json(contact);
+    } catch (e) {
+      console.error(e.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
 
 /*
  * @route      PUT /api/accomplishments/:id
