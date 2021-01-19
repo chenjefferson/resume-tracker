@@ -2,14 +2,28 @@
 
 Ever wanted to update your resume, but end up needing to re-compile everything
 you've done, and then filter it down later based on what's relevant? I have.
-It sucks. Enter: Resume Tracker. Resume Tracker is a way for you to host your
-accomplishments online and tag them so that when it comes time to make your
-resume, you can just filter it down to make something specific to each
-application.
+It's not very fun. Enter: Resume Tracker. Resume Tracker is a way for you to
+host your accomplishments online and tag them so that when it comes time to
+make your resume, you can just filter it down to make something specific to
+each application.
 
-## Running Backend Tests
+## Running
 
-Backend API tests are written in Postman. You can view example requests here:
+### Frontend
+
+To run the frontend, run `npm run client` from the project's root directory.
+
+### Backend
+
+To run the frontend, run `npm run server` from the project's root directory.
+
+## Testing
+
+### Backend
+
+Backend API tests are written in Postman. You can view example requests to the
+backend API here:
+
 https://www.getpostman.com/collections/5fb7792fe33d8bb3ba75
 
 ## Technologies Used
