@@ -5,14 +5,13 @@ import { Link } from 'react-router-dom';
 
 const Navbar = ({ title, icon }) => {
   return (
-    <nav>
-      <header>
+    <nav className='navbar bg-primary'>
+      <header className='med'>
         <Link to='/'>
-          <FontAwesomeIcon icon={icon} />
-          {title}
+          <FontAwesomeIcon icon={icon} /> {title}
         </Link>
       </header>
-      <ul>
+      <ul className='small'>
         <li>
           <Link to='/'>Home</Link>
         </li>

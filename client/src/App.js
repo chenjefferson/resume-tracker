@@ -4,7 +4,6 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 import './App.css';
 import Home from './components/pages/Home';
@@ -20,7 +19,7 @@ function App() {
       <div className='container'>
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route path='/about' component={About} />
+          <Route exact path='/about' component={About} />
         </Switch>
       </div>
     </Router>
