@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Achievements from '../achievements/Achievements';
 
 const Home = () => {
   return (
-    <div>
-      <h1>Home</h1>
-    </div>
+    <Fragment>
+      <div>{/* Achievement Form */}</div>
+      <div className='grid-2'>
+        <Achievements />
+      </div>
+    </Fragment>
   );
 };
 

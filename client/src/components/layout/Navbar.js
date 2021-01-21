@@ -12,10 +12,10 @@ const Navbar = ({ title, icon }) => {
         </Link>
       </header>
       <ul className='small'>
-        <li>
+        <li class='btn btn-info'>
           <Link to='/'>Home</Link>
         </li>
-        <li>
+        <li class='btn btn-info'>
           <Link to='/about'>About</Link>
         </li>
       </ul>

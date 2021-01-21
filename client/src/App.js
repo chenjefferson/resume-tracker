@@ -6,6 +6,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import './App.css';
+import AchievementState from './context/achievement/AchievementState';
 import Home from './components/pages/Home';
 import About from './components/pages/About';
 import Navbar from './components/layout/Navbar';
@@ -14,15 +15,17 @@ library.add(fab, far, fas);
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <div className='container'>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/about' component={About} />
-        </Switch>
-      </div>
-    </Router>
+    <AchievementState>
+      <Router>
+        <Navbar />
+        <div className='container'>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/about' component={About} />
+          </Switch>
+        </div>
+      </Router>
+    </AchievementState>
   );
 }
 

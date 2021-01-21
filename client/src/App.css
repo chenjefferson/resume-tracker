@@ -10,6 +10,8 @@
   --gray-050: #f8f8f8;
   --danger-500: #fc6976;
   --success-500: #c5fc69;
+  --success-700: #8fe104;
+  --success-900: #92e605;
 }
 
 /* CSS reset */
@@ -205,9 +207,10 @@ img {
   padding: 0.4rem 1.3rem;
   font-size: 1rem;
   border: none;
+  border-radius: 0.5rem;
   cursor: pointer;
   margin-right: 0.5rem;
-  transition: opacity 0.2s ease-in;
+  transition: transform 0.2s ease-out;
   outline: none;
 }
 
@@ -282,7 +285,12 @@ img {
 .bg-success,
 .badge-success,
 .alert-success {
-  background: var(--success-500);
+  background: var(--success-900);
+  color: #fff;
+}
+
+.btn-info {
+  background-color: var(--gray-500);
   color: #fff;
 }
 
@@ -296,7 +304,7 @@ img {
 }
 
 .btn:hover {
-  opacity: 0.8;
+  transform: scale(1.1);
 }
 
 .bg-light,
