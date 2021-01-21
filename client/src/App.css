@@ -107,6 +107,11 @@ img {
   margin: 0.7rem 0;
 }
 
+.card-lr {
+  display: flex;
+  justify-content: space-between;
+}
+
 /* list */
 .list {
   margin: 0.5rem 0;

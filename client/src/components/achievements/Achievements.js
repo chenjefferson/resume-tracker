@@ -1,5 +1,6 @@
 import React, { Fragment, useContext } from 'react';
 import AchievementContext from '../../context/achievement/AchievementContext';
+import AchievementItem from './AchievementItem';
 
 const Achievements = () => {
   const achievementContext = useContext(AchievementContext);
@@ -8,7 +9,7 @@ const Achievements = () => {
   return (
     <Fragment>
       {achievements.map((achievement) => (
-        <h3>{achievement.title}</h3>
+        <AchievementItem achievement={achievement} />
       ))}
     </Fragment>
   );
