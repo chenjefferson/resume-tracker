@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import AchievementContext from './AchievementContext';
 import achievementReducer from './achievementReducer';
 import {
@@ -53,6 +53,10 @@ const AchievementState = (props) => {
   const [state, dispatch] = useReducer(achievementReducer, initialState);
 
   // add achievement
+  const addAchievement = (achievement) => {
+    achievement.id = uuidv4();
+    dispatch({ type: ADD_ACHIEVEMENT, payload: achievement });
+  };
 
   // delete achievement
 
@@ -70,6 +74,7 @@ const AchievementState = (props) => {
     <AchievementContext.Provider
       value={{
         achievements: state.achievements,
+        addAchievement,
       }}
     >
       {props.children}

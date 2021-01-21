@@ -4,9 +4,6 @@ import AchievementContext from '../../context/achievement/AchievementContext';
 const AchievementForm = () => {
   const achievementContext = useContext(AchievementContext);
 
-  const onChange = () => {};
-  const onSubmit = () => {};
-
   const [achievement, setAchievement] = useState({
     title: '',
     summary: '',
@@ -15,6 +12,23 @@ const AchievementForm = () => {
     begin: Date.now,
     end: Date.now,
   });
+
+  const onChange = (e) => {
+    setAchievement({ ...achievement, [e.target.name]: e.target.value });
+  };
+  const onSubmit = (e) => {
+    e.preventDefault();
+    achievementContext.addAchievement(achievement);
+    setAchievement({
+      title: '',
+      summary: '',
+      actions: [],
+      type: '',
+      begin: Date.now,
+      end: Date.now,
+    });
+  };
+
   const { title, summary, actions, type, begin, end } = achievement;
 
   return (
