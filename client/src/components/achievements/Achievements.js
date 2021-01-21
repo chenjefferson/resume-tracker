@@ -7,11 +7,12 @@ const Achievements = () => {
 
   const { achievements } = achievementContext;
   return (
-    <Fragment>
+    <div>
+      <h2 className='text-primary'>Achievements</h2>
       {achievements.map((achievement) => (
         <AchievementItem achievement={achievement} />
       ))}
-    </Fragment>
+    </div>
   );
 };
 

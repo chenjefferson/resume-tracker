@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 import Achievements from '../achievements/Achievements';
+import AchievementForm from '../achievements/AchievementForm';
 
 const Home = () => {
   return (
     <Fragment>
-      <div>{/* Achievement Form */}</div>
       <div className='grid-2'>
+        <AchievementForm />
         <Achievements />
       </div>
     </Fragment>
